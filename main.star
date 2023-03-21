@@ -8,12 +8,14 @@ REDIS_SERVICE_NAME = "redis"
 
 def run(plan, args):
 
-    plan.add_service(service_name = REDIS_SERVICE_NAME, config= ServiceConfig(
+    redis_service_config= ServiceConfig(
         image = REDIS_IMAGE,
         ports = {
             REDIS_CLIENT_PORT_ID: PortSpec(number = REDIS_CLIENT_PORT_NUMBER, transport_protocol = REDIS_CLIENT_PORT_PROTOCOL)
         }
-    ))
+    )
+
+    plan.add_service(service_name = REDIS_SERVICE_NAME, config = redis_service_config)
 
     return {"redis-service-name": REDIS_SERVICE_NAME}
     
