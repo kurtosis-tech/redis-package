@@ -26,6 +26,5 @@ main_redis_module = import_module("github.com/kurtosis-tech/redis-package/main.s
 def run(plan, args):
     plan.print("Spinning up the Redis Package")
     # this will spin up Redis and return the output of the Redis package
-    {"redis-service-name": "redis"}
     redis_run_output = main_redis_module.run(plan, args)
 ```
