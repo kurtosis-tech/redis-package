@@ -15,7 +15,7 @@ def run(plan, args):
         }
     )
 
-    redis = plan.add_service(service_name = REDIS_SERVICE_NAME, config = redis_service_config)
+    redis = plan.add_service(name = REDIS_SERVICE_NAME, config = redis_service_config)
 
     return {"service-name": REDIS_SERVICE_NAME, "hostname": redis.hostname}
     
