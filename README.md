@@ -2,7 +2,7 @@
 
 ![Run of the Redis Package](./run.gif)
 
-This is a [Kurtosis Starlark Package](https://docs.kurtosis.com/explanations/starlark) that allows you to spin up a Redis instance.
+This is a [Kurtosis Starlark Package][https://docs.kurtosis.com/starlark-reference/](https://docs.kurtosis.com/starlark-reference)) that allows you to spin up a Redis instance.
 
 ### Run
 
