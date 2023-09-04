@@ -11,6 +11,12 @@ def run(
     # The container image that the Redis service will be started with
     image = "redis:alpine", # type:string
 ):
+    """
+    This will return a struct that contains the following properties:
+    - service_name: the name of the service that was created
+    - hostname: a future reference (https://docs.kurtosis.com/concepts-reference/future-references) to the hostname of the created Redis service
+    - port_number: the port number of the client port
+    """
     redis_service_config= ServiceConfig(
         image = image,
         ports = {
@@ -20,4 +26,8 @@ def run(
 
     redis = plan.add_service(name = service_name, config = redis_service_config)
 
-    return {"service-name": REDIS_SERVICE_NAME, "hostname": redis.hostname, "client-port": REDIS_CLIENT_PORT_NUMBER}
+    return struct(
+        service_name = service_name,
+        hostname = redis.hostname
+        port_number = REDIS_CLIENT_PORT_NUMBER,
+    )
