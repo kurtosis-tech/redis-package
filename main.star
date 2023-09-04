@@ -28,6 +28,6 @@ def run(
 
     return struct(
         service_name = service_name,
-        hostname = redis.hostname
+        hostname = redis.hostname,
         port_number = REDIS_CLIENT_PORT_NUMBER,
     )
