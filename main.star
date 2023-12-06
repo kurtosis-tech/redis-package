@@ -14,6 +14,7 @@ def run(
     service_name="redis",  # type:string
     # The container image that the Redis service will be started with
     image="redis:alpine",  # type:string
+    port_number=REDIS_CLIENT_PORT_NUMBER,  # type:int
     min_cpu=REDIS_MIN_CPU,  # type:int
     max_cpu=REDIS_MAX_CPU,  # type:int
     min_memory=REDIS_MIN_MEMORY,  # type:int
@@ -48,7 +49,7 @@ def run(
     return struct(
         service_name=service_name,
         hostname=redis.hostname,
-        port_number=REDIS_CLIENT_PORT_NUMBER,
+        port_number=port_number,
         min_cpu=min_cpu,
         max_cpu=max_cpu,
         min_memory=min_memory,
