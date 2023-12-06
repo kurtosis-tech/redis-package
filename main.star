@@ -7,19 +7,17 @@ REDIS_MAX_CPU = 1000
 REDIS_MIN_MEMORY = 32
 REDIS_MAX_MEMORY = 1024
 
+
 def run(
     plan,
-
     # The name to give the created Redis service
-    service_name = "redis", # type:string
-
+    service_name="redis",  # type:string
     # The container image that the Redis service will be started with
-    image = "redis:alpine", # type:string
-
-    min_cpu = REDIS_MIN_CPU, # type:int
-    max_cpu = REDIS_MAX_CPU, # type:int
-    min_memory = REDIS_MIN_MEMORY, # type:int
-    max_memory = REDIS_MAX_MEMORY, # type:int
+    image="redis:alpine",  # type:string
+    min_cpu=REDIS_MIN_CPU,  # type:int
+    max_cpu=REDIS_MAX_CPU,  # type:int
+    min_memory=REDIS_MIN_MEMORY,  # type:int
+    max_memory=REDIS_MAX_MEMORY,  # type:int
 ):
     """
     This will return a struct that contains the following properties:
@@ -31,10 +29,13 @@ def run(
     - min_memory (int): Define how much MB of memory the service should be assigned at least.
     - max_memory (int): Define how much MB of memory the service should be assigned max.
     """
-    redis_service_config= ServiceConfig(
-        image = image,
-        ports = {
-            REDIS_CLIENT_PORT_ID: PortSpec(number = REDIS_CLIENT_PORT_NUMBER, transport_protocol = REDIS_CLIENT_PORT_PROTOCOL)
+    redis_service_config = ServiceConfig(
+        image=image,
+        ports={
+            REDIS_CLIENT_PORT_ID: PortSpec(
+                number=REDIS_CLIENT_PORT_NUMBER,
+                transport_protocol=REDIS_CLIENT_PORT_PROTOCOL,
+            )
         },
         min_cpu=min_cpu,
         max_cpu=max_cpu,
@@ -42,12 +43,12 @@ def run(
         max_memory=max_memory,
     )
 
-    redis = plan.add_service(name = service_name, config = redis_service_config)
+    redis = plan.add_service(name=service_name, config=redis_service_config)
 
     return struct(
-        service_name = service_name,
-        hostname = redis.hostname,
-        port_number = REDIS_CLIENT_PORT_NUMBER,
+        service_name=service_name,
+        hostname=redis.hostname,
+        port_number=REDIS_CLIENT_PORT_NUMBER,
         min_cpu=min_cpu,
         max_cpu=max_cpu,
         min_memory=min_memory,
