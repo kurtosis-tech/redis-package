@@ -35,7 +35,7 @@ def run(
         image = image,
         ports = {
             REDIS_CLIENT_PORT_ID: PortSpec(number = REDIS_CLIENT_PORT_NUMBER, transport_protocol = REDIS_CLIENT_PORT_PROTOCOL)
-        }
+        },
         min_cpu=min_cpu,
         max_cpu=max_cpu,
         min_memory=min_memory,
