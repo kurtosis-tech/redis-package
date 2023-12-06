@@ -1,4 +1,4 @@
-name: "github.com/kurtosis-tech/redis-package"
+name: "github.com/barnabasbusa/redis-package"
 description: |
   # Redis
   This is a Kurtosis package for launching a single Redis instance. See the `main.star#run` function for detailed parameters.
