@@ -19,6 +19,7 @@ def run(
     max_cpu=REDIS_MAX_CPU,  # type:int
     min_memory=REDIS_MIN_MEMORY,  # type:int
     max_memory=REDIS_MAX_MEMORY,  # type:int
+    node_selectors=None,    #type:dict
 ):
     """
     This will return a struct that contains the following properties:
@@ -29,7 +30,11 @@ def run(
     - max_cpu (int): Define how much CPU millicores the service should be assign max.
     - min_memory (int): Define how much MB of memory the service should be assigned at least.
     - max_memory (int): Define how much MB of memory the service should be assigned max.
+    - node_selectors (dict): Define a dict of node selectors - only works in kubernetes example: {"kubernetes.io/hostname": node-name-01}
     """
+    if node_selectors == None:
+        node_selectors = {}
+
     redis_service_config = ServiceConfig(
         image=image,
         ports={
@@ -42,6 +47,7 @@ def run(
         max_cpu=max_cpu,
         min_memory=min_memory,
         max_memory=max_memory,
+        node_selectors=node_selectors,
     )
 
     redis = plan.add_service(name=service_name, config=redis_service_config)
@@ -54,4 +60,5 @@ def run(
         max_cpu=max_cpu,
         min_memory=min_memory,
         max_memory=max_memory,
+        node_selectors=node_selectors,
     )
