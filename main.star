@@ -19,6 +19,7 @@ def run(
     max_cpu=REDIS_MAX_CPU,  # type:int
     min_memory=REDIS_MIN_MEMORY,  # type:int
     max_memory=REDIS_MAX_MEMORY,  # type:int
+    node_selectors={},    #type:dict
 ):
     """
     This will return a struct that contains the following properties:
@@ -42,6 +43,7 @@ def run(
         max_cpu=max_cpu,
         min_memory=min_memory,
         max_memory=max_memory,
+        node_selectors=node_selectors,
     )
 
     redis = plan.add_service(name=service_name, config=redis_service_config)
@@ -54,4 +56,5 @@ def run(
         max_cpu=max_cpu,
         min_memory=min_memory,
         max_memory=max_memory,
+        node_selectors=node_selectors,
     )
