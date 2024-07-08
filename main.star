@@ -29,7 +29,7 @@ def run(
     This will return a struct that contains the following properties:
     - service_name: the name of the service that was created
     - hostname: a future reference (https://docs.kurtosis.com/concepts-reference/future-references) to the hostname of the created Redis service
-    - port_number: the port number of the client port\
+    - port_number: the port number of the client port
     - persistent(bool): Whether the data should be persisted. Defaults to True; Note that this isn't supported on multi node k8s cluster as of 2023-10-16
     - min_cpu (int): Define how much CPU millicores the service should be assigned at least.
     - max_cpu (int): Define how much CPU millicores the service should be assign max.
@@ -37,6 +37,8 @@ def run(
     - max_memory (int): Define how much MB of memory the service should be assigned max.
     - node_selectors (dict[string, string]): Define a dict of node selectors - only works in kubernetes example: {"kubernetes.io/hostname": node-name-01}
     """
+    env_vars = {}
+    files = {}
     if persistent:
         files[DATA_DIRECTORY_PATH] = Directory(
             persistent_key="data-{0}".format(service_name),
@@ -47,6 +49,8 @@ def run(
 
     redis_service_config = ServiceConfig(
         image=image,
+        files=files,
+        env_vars=env_vars,
         ports={
             REDIS_CLIENT_PORT_ID: PortSpec(
                 number=REDIS_CLIENT_PORT_NUMBER,
@@ -63,7 +67,7 @@ def run(
 
     redis = plan.add_service(name=service_name, config=redis_service_config)
 
-    url = "{protocol}}://{hostname}:{port}".format(
+    url = "{protocol}://{hostname}:{port}".format(
         protocol=APPLICATION_PROTOCOL, hostname=redis.hostname, port=port_number
     )
 
