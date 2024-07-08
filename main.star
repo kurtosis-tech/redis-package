@@ -30,7 +30,7 @@ def run(
     - service_name: the name of the service that was created
     - hostname: a future reference (https://docs.kurtosis.com/concepts-reference/future-references) to the hostname of the created Redis service
     - port_number: the port number of the client port
-    - persistent(bool): Whether the data should be persisted. Defaults to True; Note that this isn't supported on multi node k8s cluster as of 2023-10-16
+    - persistent(bool): Whether the data should be persisted. Defaults to True;
     - min_cpu (int): Define how much CPU millicores the service should be assigned at least.
     - max_cpu (int): Define how much CPU millicores the service should be assign max.
     - min_memory (int): Define how much MB of memory the service should be assigned at least.
