@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  kurtosis-docs-checker: kurtosis-tech/docs-checker@0.2.3
+  kurtosis-docs-checker: kurtosis-tech/docs-checker@0.2.9
 
 executors:
   ubuntu_vm:
@@ -18,7 +18,8 @@ jobs:
           echo "deb [trusted=yes] https://apt.fury.io/kurtosis-tech/ /" | sudo tee /etc/apt/sources.list.d/kurtosis.list
           sudo apt update
           sudo apt install kurtosis-cli
-      - checkout
+      - run: |
+          git clone https://github.com/kurtosis-tech/redis-package.git .
 
       # We don't send metrics to avoid polluting our logs
       - run: kurtosis config init dont-send-metrics
