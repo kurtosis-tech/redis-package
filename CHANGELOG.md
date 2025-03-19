@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0](https://github.com/kurtosis-tech/redis-package/compare/0.0.1...1.0.0) (2025-03-12)
+## 1.0.0 (2025-03-12)
 
 
 ### ⚠ BREAKING CHANGES
