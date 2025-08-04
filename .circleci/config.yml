@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-  kurtosis-docs-checker: kurtosis-tech/docs-checker@0.3.0
+  kurtosis-docs-checker: kurtosis-tech/docs-checker@0.2.9
+  node: circleci/node@5.2.0
 
 executors:
   ubuntu_vm:
@@ -33,7 +34,15 @@ workflows:
   build:
     jobs:
       # -- PR check jobs ------------------------------------------
+      - node/install:
+          node-version: "20.18.1"
+          filters:
+            branches:
+              ignore:
+                - main
       - kurtosis-docs-checker/check-docs:
+          requires:
+            - node/install
           should-check-changelog: false
           markdown-link-check-config-json: | 
             {
