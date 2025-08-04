@@ -24,6 +24,7 @@ def run(
     min_memory=REDIS_MIN_MEMORY,  # type:int
     max_memory=REDIS_MAX_MEMORY,  # type:int
     node_selectors=None,  # type:dict
+    tolerations=None,  # type:list[dict]
 ):
     """
     This will return a struct that contains the following properties:
@@ -36,6 +37,7 @@ def run(
     - min_memory (int): Define how much MB of memory the service should be assigned at least.
     - max_memory (int): Define how much MB of memory the service should be assigned max.
     - node_selectors (dict[string, string]): Define a dict of node selectors - only works in kubernetes example: {"kubernetes.io/hostname": node-name-01}
+    - tolerations (list[dict]): Define a list of tolerations - only works in kubernetes example: [{"key": "key", "operator": "Equal", "value": "value", "effect": "NoSchedule"}]
     """
     env_vars = {}
     files = {}
@@ -46,6 +48,9 @@ def run(
         env_vars["REDISDATA"] = DATA_DIRECTORY_PATH + "/redis-data"
     if node_selectors == None:
         node_selectors = {}
+
+    if tolerations == None:
+        tolerations = []
 
     redis_service_config = ServiceConfig(
         image=image,
@@ -63,6 +68,7 @@ def run(
         min_memory=min_memory,
         max_memory=max_memory,
         node_selectors=node_selectors,
+        tolerations=tolerations,
     )
 
     redis = plan.add_service(name=service_name, config=redis_service_config)
