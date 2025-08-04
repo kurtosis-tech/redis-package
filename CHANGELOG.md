@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/kurtosis-tech/redis-package/compare/1.0.0...1.1.0) (2025-08-04)
+
+
+### Features
+
+* add tolerations ([#16](https://github.com/kurtosis-tech/redis-package/issues/16)) ([096ea12](https://github.com/kurtosis-tech/redis-package/commit/096ea1284062fd8b4e26845306b6681c4ed6dfe5))
+
 ## 1.0.0 (2025-03-12)
 
 
