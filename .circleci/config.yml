@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  kurtosis-docs-checker: kurtosis-tech/docs-checker@0.2.9
+  kurtosis-docs-checker: kurtosis-tech/docs-checker@0.2.10
 
 executors:
   ubuntu_vm:
